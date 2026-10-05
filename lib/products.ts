@@ -12,6 +12,7 @@
  */
 import { SEED_PRODUCTS } from "@/data/products-seed";
 import { readCollection, writeCollection } from "@/lib/storage";
+<<<<<<< HEAD
 import OYEKID_CATALOG from "@/data/oyekid-catalog.json";
 
 const COLLECTION = "products";
@@ -35,6 +36,13 @@ export type ProductVariant = {
   sku?: string;
 };
 
+=======
+
+const COLLECTION = "products";
+
+export type ProductCategory = "kids" | "mtb" | "hybrid";
+
+>>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
 export type Product = {
   slug: string;
   brand: string;
@@ -47,6 +55,7 @@ export type Product = {
   rating: number;
   image: string;
   inStock: boolean;
+<<<<<<< HEAD
   /** shop-by-size group, e.g. "Balance Bike" / "12T" / "20T" */
   group?: string;
   tagline?: string;
@@ -56,10 +65,13 @@ export type Product = {
   /** colourways; when present, orders must name one of these colours */
   variants?: ProductVariant[];
   defaultColor?: string;
+=======
+>>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   createdAt: string;
   updatedAt: string;
 };
 
+<<<<<<< HEAD
 let catalogChecked = false;
 
 /** Copies any catalogue product the live collection hasn't seen yet into it,
@@ -88,12 +100,21 @@ async function importCatalog(products: Product[]): Promise<Product[]> {
 export async function getProducts(): Promise<Product[]> {
   const existing = await readCollection<Product[] | null>(COLLECTION, null);
   if (existing) return importCatalog(existing);
+=======
+export async function getProducts(): Promise<Product[]> {
+  const existing = await readCollection<Product[] | null>(COLLECTION, null);
+  if (existing) return existing;
+>>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
 
   // first run: seed once from the shop's real, verified starting catalogue
   const now = new Date().toISOString();
   const seeded: Product[] = SEED_PRODUCTS.map((p) => ({ ...p, createdAt: now, updatedAt: now }));
   await writeCollection(COLLECTION, seeded);
+<<<<<<< HEAD
   return importCatalog(seeded);
+=======
+  return seeded;
+>>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | undefined> {

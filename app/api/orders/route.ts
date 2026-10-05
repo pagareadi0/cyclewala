@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Too many different cycles in one order" }, { status: 400 });
     }
 
+<<<<<<< HEAD
     // merge repeats of the same cycle + colour, then price every line from the catalogue
     const qtyByLine = new Map<string, { slug: string; color: string; qty: number }>();
     for (const i of items) {
@@ -51,10 +52,23 @@ export async function POST(request: NextRequest) {
 
     const cleanItems: OrderItem[] = [];
     for (const { slug, color, qty } of qtyByLine.values()) {
+=======
+    // merge repeats of the same cycle, then price every line from the catalogue
+    const qtyBySlug = new Map<string, number>();
+    for (const i of items) {
+      const slug = clip(i?.slug, 80);
+      const qty = Math.max(1, Math.min(20, Math.floor(Number(i?.qty)) || 1));
+      qtyBySlug.set(slug, Math.min(20, (qtyBySlug.get(slug) ?? 0) + qty));
+    }
+
+    const cleanItems: OrderItem[] = [];
+    for (const [slug, qty] of qtyBySlug) {
+>>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
       const product = await getProductBySlug(slug);
       if (!product) {
         return NextResponse.json({ error: "A cycle in your list is no longer available" }, { status: 400 });
       }
+<<<<<<< HEAD
       // colourway cycles: the colour must be one the product really has, and
       // that colour's own price/stock apply
       let price = product.price;
@@ -79,6 +93,15 @@ export async function POST(request: NextRequest) {
         );
       }
       cleanItems.push({ slug: product.slug, color: chosenColor, brand: product.brand, model: product.model, price, qty });
+=======
+      if (!product.inStock) {
+        return NextResponse.json(
+          { error: `${product.brand} ${product.model} is out of stock right now` },
+          { status: 400 }
+        );
+      }
+      cleanItems.push({ slug: product.slug, brand: product.brand, model: product.model, price: product.price, qty });
+>>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
     }
 
     const order = await createOrder({
@@ -87,8 +110,13 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json({ id: order.id, total: order.total }, { status: 201 });
+<<<<<<< HEAD
   } catch (error) {
     console.error("[orders] Failed to place order", error);
     return NextResponse.json({ error: "Order service is temporarily unavailable" }, { status: 503 });
+=======
+  } catch {
+    return NextResponse.json({ error: "Couldn't place the order — try again" }, { status: 400 });
+>>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   }
 }
