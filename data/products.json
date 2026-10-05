@@ -11,77 +11,12 @@
       "Ralson 2.1 tan-wall tyres",
       "Digital-printed saddle, hand-stitched grips"
     ],
-<<<<<<< HEAD
     "price": 13990,
-=======
-    "price": 12990,
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
     "rating": 4.2,
     "image": "/images/shop/uploads/neufman-annecy-1789627693535.webp",
     "inStock": true,
     "createdAt": "2026-09-17T05:33:06.289Z",
-<<<<<<< HEAD
     "updatedAt": "2026-09-25T14:40:02.231Z"
-=======
-    "updatedAt": "2026-09-17T06:48:16.440Z"
-  },
-  {
-    "slug": "oyekid-mermaid",
-    "brand": "Oyekid",
-    "model": "Mermaid",
-    "category": "kids",
-    "sizes": "12T / 14T",
-    "specs": [
-      "Digital-print PU soft seat, back rest",
-      "Full chain cover, attached basket",
-      "Caliper brakes, EVA tyres or tyre-tube",
-      "Quick-release, colour wheel cards"
-    ],
-    "price": 7000,
-    "rating": 4.4,
-    "image": "/images/shop/uploads/oyekid-mermaid-1789627719531.webp",
-    "inStock": true,
-    "createdAt": "2026-09-17T05:33:06.289Z",
-    "updatedAt": "2026-09-17T06:48:40.899Z"
-  },
-  {
-    "slug": "oyekid-shark-tank",
-    "brand": "Oyekid",
-    "model": "Shark Tank",
-    "category": "kids",
-    "sizes": "12T / 14T / 16T / 20T",
-    "specs": [
-      "PU soft seat, back rest & side supports",
-      "Full chain cover, attached basket",
-      "Caliper brakes, EVA tyres or tyre-tube",
-      "Water bottle included"
-    ],
-    "price": 12800,
-    "rating": 4.6,
-    "image": "/images/shop/uploads/oyekid-shark-tank-1789627757911.webp",
-    "inStock": true,
-    "createdAt": "2026-09-17T05:33:06.289Z",
-    "updatedAt": "2026-09-17T06:49:19.064Z"
-  },
-  {
-    "slug": "oyekid-yuvaa",
-    "brand": "Oyekid",
-    "model": "Yuvaa",
-    "category": "kids",
-    "sizes": "16T / 20T",
-    "specs": [
-      "Power brake, quick release, inner cable",
-      "Front suspension or rigid fork",
-      "Double-wall or steel rim (size-dependent)",
-      "Water-decal graphics"
-    ],
-    "price": 12800,
-    "rating": 4.3,
-    "image": "/images/shop/oyekid-yuvaa.jpg",
-    "inStock": true,
-    "createdAt": "2026-09-17T05:33:06.289Z",
-    "updatedAt": "2026-09-17T06:41:52.590Z"
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   },
   {
     "slug": "neufman-ace",
@@ -323,7 +258,6 @@
     "inStock": true,
     "createdAt": "2026-09-17T06:56:51.378Z",
     "updatedAt": "2026-09-17T06:56:51.378Z"
-<<<<<<< HEAD
   },
   {
     "slug": "oyekid-balance-bike-magwheel",
@@ -2925,7 +2859,5 @@
     "source": "oyekidbikes.com sku OK-AIRF-26-RG",
     "createdAt": "2026-10-05T07:43:21.396Z",
     "updatedAt": "2026-10-05T07:43:21.396Z"
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   }
 ]

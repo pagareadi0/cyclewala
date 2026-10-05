@@ -6,11 +6,8 @@ import type { Product, ProductCategory } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 import StarRating from "@/components/ui/StarRating";
 import ProductModal from "@/components/shop/ProductModal";
-<<<<<<< HEAD
 import ColorSwatches from "@/components/shop/ColorSwatches";
 import { discountPct, shownFor } from "@/lib/variants";
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
 import styles from "./Shop.module.css";
 import { useLang } from "@/lib/i18n";
 
@@ -26,7 +23,6 @@ const BRANDS = [
   { name: "Oyekid", note: "Dedicated kids' cycles, sized to grow with your child.", logo: "/images/logo/oyekidlogo.png" },
 ];
 
-<<<<<<< HEAD
 /* Oyekid's own shop-by-age menu (oyekidbikes.com) — `group` on each Oyekid
    product is the wheel size / balance-bike key on the left. */
 const OYEKID_GROUPS = [
@@ -39,8 +35,6 @@ const OYEKID_GROUPS = [
   { id: "26T", label: "15+ Years (26T)" },
 ];
 
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
 type SortKey = "featured" | "price-asc" | "price-desc" | "rating";
 
 /* the home page shows a preview so a big catalogue doesn't turn into an
@@ -169,11 +163,8 @@ export default function Shop() {
   const { addToCart } = useCart();
   const [products, setProducts] = useState<Product[] | null>(null);
   const [selectedCategories, setSelectedCategories] = useState<ProductCategory[]>([]);
-<<<<<<< HEAD
   const [selectedGroups, setSelectedGroups] = useState<string[]>([]);
   const [picked, setPicked] = useState<Record<string, string>>({});
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [minPrice, setMinPrice] = useState("");
@@ -203,20 +194,13 @@ export default function Shop() {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- a new filter/search/sort result starts back at the compact preview
     setShowAll(false);
-<<<<<<< HEAD
   }, [selectedCategories, selectedGroups, minPrice, maxPrice, minRating, inStockOnly, query, sort]);
-=======
-  }, [selectedCategories, minPrice, maxPrice, minRating, inStockOnly, query, sort]);
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
 
   const scrollCircles = (dir: 1 | -1) => circlesRef.current?.scrollBy({ left: dir * 180, behavior: "smooth" });
 
   const showBrand = (name: string) => {
     setSelectedCategories((prev) => (prev.length ? [] : prev));
-<<<<<<< HEAD
     setSelectedGroups([]);
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
     setQuery(name);
     document.getElementById("shop")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -225,21 +209,15 @@ export default function Shop() {
     setSelectedCategories((prev) => (prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]));
   };
 
-<<<<<<< HEAD
   const toggleGroup = (g: string) => {
     setSelectedGroups((prev) => (prev.includes(g) ? prev.filter((x) => x !== g) : [...prev, g]));
   };
 
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   const filtered = useMemo(() => {
     if (!products) return [];
     let list = products;
     if (selectedCategories.length) list = list.filter((p) => selectedCategories.includes(p.category));
-<<<<<<< HEAD
     if (selectedGroups.length) list = list.filter((p) => p.group !== undefined && selectedGroups.includes(p.group));
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
     if (minPrice) list = list.filter((p) => p.price !== null && p.price >= Number(minPrice));
     if (maxPrice) list = list.filter((p) => p.price !== null && p.price <= Number(maxPrice));
     if (minRating) list = list.filter((p) => p.rating >= minRating);
@@ -255,26 +233,16 @@ export default function Shop() {
     else if (sort === "price-desc") sorted.sort((a, b) => (b.price ?? -Infinity) - (a.price ?? -Infinity));
     else if (sort === "rating") sorted.sort((a, b) => b.rating - a.rating);
     return sorted;
-<<<<<<< HEAD
   }, [products, selectedCategories, selectedGroups, minPrice, maxPrice, minRating, inStockOnly, query, sort]);
-=======
-  }, [products, selectedCategories, minPrice, maxPrice, minRating, inStockOnly, query, sort]);
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
 
   const visible = showAll ? filtered : filtered.slice(0, PAGE_SIZE);
   const remaining = filtered.length - visible.length;
 
   const activeFilterCount =
-<<<<<<< HEAD
     selectedCategories.length + selectedGroups.length + (minPrice ? 1 : 0) + (maxPrice ? 1 : 0) + (minRating ? 1 : 0) + (inStockOnly ? 1 : 0) + (query ? 1 : 0);
   const clearAll = () => {
     setSelectedCategories([]);
     setSelectedGroups([]);
-=======
-    selectedCategories.length + (minPrice ? 1 : 0) + (maxPrice ? 1 : 0) + (minRating ? 1 : 0) + (inStockOnly ? 1 : 0) + (query ? 1 : 0);
-  const clearAll = () => {
-    setSelectedCategories([]);
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
     setMinPrice("");
     setMaxPrice("");
     setMinRating(0);
@@ -363,7 +331,6 @@ export default function Shop() {
                 </ul>
               </FilterSection>
 
-<<<<<<< HEAD
               <FilterSection icon={Icon.bike} title="Oyekid · Shop by Age">
                 <ul className={styles.checkList}>
                   {OYEKID_GROUPS.map((g) => {
@@ -380,8 +347,6 @@ export default function Shop() {
                 </ul>
               </FilterSection>
 
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
               <FilterSection icon={Icon.target} title="Price Range">
                 <div className={styles.priceRow}>
                   <input type="number" placeholder="Min" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
@@ -449,14 +414,11 @@ export default function Shop() {
                       <button onClick={() => toggleCategory(c)}>×</button>
                     </span>
                   ))}
-<<<<<<< HEAD
                   {selectedGroups.map((g) => (
                     <span className={styles.chip} key={g}>
                       {OYEKID_GROUPS.find((m) => m.id === g)?.label ?? g} <button onClick={() => toggleGroup(g)}>×</button>
                     </span>
                   ))}
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
                   {query && (
                     <span className={styles.chip}>
                       &quot;{query}&quot; <button onClick={() => setQuery("")}>×</button>
@@ -498,7 +460,6 @@ export default function Shop() {
                 </div>
               ) : (
                 <div className={view === "grid" ? styles.grid : styles.list}>
-<<<<<<< HEAD
                   {visible.map((item) => {
                     const shown = shownFor(item, picked[item.slug]);
                     const off = discountPct(shown.price, shown.regularPrice);
@@ -509,15 +470,6 @@ export default function Shop() {
                         <img src={shown.image} alt={`${item.brand} ${item.model}${shown.color ? ` – ${shown.color}` : ""}`} loading="lazy" />
                         <span className={shown.inStock ? styles.stockBadge : styles.stockBadgeOut}>
                           {shown.inStock ? "In Stock" : "Out of Stock"}
-=======
-                  {visible.map((item) => (
-                    <article className={view === "grid" ? styles.card : styles.cardList} key={item.slug}>
-                      <div className={styles.cardPhoto}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={item.image} alt={`${item.brand} ${item.model}`} loading="lazy" />
-                        <span className={item.inStock ? styles.stockBadge : styles.stockBadgeOut}>
-                          {item.inStock ? "In Stock" : "Out of Stock"}
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
                         </span>
                       </div>
                       <div className={styles.cardBody}>
@@ -525,7 +477,6 @@ export default function Shop() {
                           {item.brand} · {item.sizes}
                         </p>
                         <h4 className={styles.model}>{item.model}</h4>
-<<<<<<< HEAD
                         {item.rating > 0 && (
                           <div className={styles.rating}>
                             <StarRating value={item.rating} />
@@ -557,14 +508,6 @@ export default function Shop() {
                                 )}
                               </>
                             )}
-=======
-                        <div className={styles.rating}>
-                          <StarRating value={item.rating} />
-                        </div>
-                        <div className={styles.foot}>
-                          <span className={item.price === null ? styles.priceTbc : styles.price}>
-                            {item.price === null ? t("shop.addPrice") : `₹${item.price.toLocaleString("en-IN")}`}
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
                           </span>
                           <div className={styles.cardCtas}>
                             <button className={styles.viewBtn} onClick={() => setSelectedProduct(item)}>
@@ -572,7 +515,6 @@ export default function Shop() {
                             </button>
                             <button
                               className={styles.addBtnSmall}
-<<<<<<< HEAD
                               disabled={!shown.inStock}
                               onClick={() =>
                                 addToCart({
@@ -582,16 +524,6 @@ export default function Shop() {
                                   model: item.model,
                                   image: shown.image,
                                   price: shown.price,
-=======
-                              disabled={!item.inStock}
-                              onClick={() =>
-                                addToCart({
-                                  slug: item.slug,
-                                  brand: item.brand,
-                                  model: item.model,
-                                  image: item.image,
-                                  price: item.price,
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
                                 })
                               }
                             >
@@ -601,12 +533,8 @@ export default function Shop() {
                         </div>
                       </div>
                     </article>
-<<<<<<< HEAD
                     );
                   })}
-=======
-                  ))}
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
                 </div>
               )}
 
@@ -667,11 +595,7 @@ export default function Shop() {
         </div>
       </div>
 
-<<<<<<< HEAD
       {selectedProduct && <ProductModal product={selectedProduct} initialColor={picked[selectedProduct.slug]} onClose={() => setSelectedProduct(null)} />}
-=======
-      {selectedProduct && <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
     </section>
   );
 }

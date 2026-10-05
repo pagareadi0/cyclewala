@@ -70,11 +70,7 @@ export default function OrdersPanel() {
   const filtered = !q
     ? orders
     : orders.filter((o) =>
-<<<<<<< HEAD
         [o.id, o.customer.name, o.customer.phone, o.customer.address, o.customer.note, ...o.items.map((i) => `${i.brand} ${i.model} ${i.color ?? ""}`)]
-=======
-        [o.id, o.customer.name, o.customer.phone, o.customer.address, o.customer.note, ...o.items.map((i) => `${i.brand} ${i.model}`)]
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
           .filter(Boolean)
           .join(" ")
           .toLowerCase()
@@ -140,12 +136,8 @@ export default function OrdersPanel() {
             {o.items.map((i) => (
               <li key={i.slug}>
                 <span>
-<<<<<<< HEAD
                   {i.brand} {i.model}
                   {i.color ? ` (${i.color})` : ""} × {i.qty}
-=======
-                  {i.brand} {i.model} × {i.qty}
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
                 </span>
                 <span>{i.price === null ? "Add: price" : `₹${(i.price * i.qty).toLocaleString("en-IN")}`}</span>
               </li>

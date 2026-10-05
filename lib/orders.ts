@@ -13,11 +13,8 @@ const COLLECTION = "orders";
 
 export type OrderItem = {
   slug: string;
-<<<<<<< HEAD
   /** colourway the customer picked, when the cycle comes in several */
   color?: string;
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   brand: string;
   model: string;
   price: number | null;

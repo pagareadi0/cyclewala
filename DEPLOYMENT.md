@@ -29,7 +29,6 @@ Copy `.env.example` and set these in the host's environment settings:
 | `DATA_DIR` | yes | Folder on the persistent disk, outside the code (e.g. `/var/lib/cyclewala`) |
 | `ADMIN_SESSION_SECRET` | optional | Long random string that signs admin session cookies |
 
-<<<<<<< HEAD
 On Vercel, add `ADMIN_EMAIL`, `ADMIN_PASSWORD` (at least 10 characters), and
 optionally `ADMIN_SESSION_SECRET` under **Project Settings → Environment
 Variables** for the **Production** environment. Create a Vercel Blob store
@@ -39,8 +38,6 @@ edits and uploads use that store because Vercel serverless filesystems are not
 writable between requests. Redeploy after changing environment variables;
 they are only available to a new deployment.
 
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
 ## 2. Build and run
 
 ```bash

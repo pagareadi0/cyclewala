@@ -22,7 +22,6 @@ import fs from "fs";
 import path from "path";
 import { randomBytes } from "crypto";
 import { getStore } from "@netlify/blobs";
-<<<<<<< HEAD
 import { get, put } from "@vercel/blob";
 
 const ON_NETLIFY = !!process.env.SITE_ID;
@@ -34,10 +33,6 @@ function requireVercelBlob() {
     throw new Error("BLOB_READ_WRITE_TOKEN is required for Vercel persistence");
   }
 }
-=======
-
-const ON_NETLIFY = !!process.env.SITE_ID;
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
 
 export const DATA_DIR = process.env.DATA_DIR
   ? path.resolve(process.env.DATA_DIR)
@@ -57,14 +52,11 @@ export async function readCollection<T>(name: string, fallback: T): Promise<T> {
     const value = await getStore("cyclewala-data").get(name, { type: "json" });
     return value === null ? fallback : (value as T);
   }
-<<<<<<< HEAD
   if (ON_VERCEL_BLOB) {
     const blob = await get(`collections/${name}.json`, { access: "private", useCache: false });
     if (!blob || blob.statusCode !== 200) return fallback;
     return (await new Response(blob.stream).json()) as T;
   }
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   try {
     return JSON.parse(fs.readFileSync(path.join(DATA_DIR, `${name}.json`), "utf-8"));
   } catch {
@@ -77,7 +69,6 @@ export async function writeCollection(name: string, data: unknown): Promise<void
     await getStore("cyclewala-data").setJSON(name, data);
     return;
   }
-<<<<<<< HEAD
   requireVercelBlob();
   if (ON_VERCEL_BLOB) {
     await put(`collections/${name}.json`, JSON.stringify(data), {
@@ -88,8 +79,6 @@ export async function writeCollection(name: string, data: unknown): Promise<void
     });
     return;
   }
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   const file = path.join(DATA_DIR, `${name}.json`);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   // temp file + rename: a crash or power cut mid-write can never leave a
@@ -109,7 +98,6 @@ export async function writeUpload(filename: string, bytes: Buffer, contentType: 
     await getStore("cyclewala-uploads").set(filename, arrayBuffer, { metadata: { contentType } });
     return;
   }
-<<<<<<< HEAD
   requireVercelBlob();
   if (ON_VERCEL_BLOB) {
     await put(`uploads/${filename}`, bytes, {
@@ -120,8 +108,6 @@ export async function writeUpload(filename: string, bytes: Buffer, contentType: 
     });
     return;
   }
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   fs.mkdirSync(UPLOAD_DIR, { recursive: true });
   fs.writeFileSync(path.join(UPLOAD_DIR, filename), bytes);
 }
@@ -135,7 +121,6 @@ export async function readUpload(filename: string): Promise<{ bytes: Buffer; con
     const contentType = (result.metadata?.contentType as string) || "application/octet-stream";
     return { bytes: Buffer.from(result.data), contentType };
   }
-<<<<<<< HEAD
   if (ON_VERCEL_BLOB) {
     const blob = await get(`uploads/${filename}`, { access: "private", useCache: false });
     if (!blob || blob.statusCode !== 200) return null;
@@ -144,8 +129,6 @@ export async function readUpload(filename: string): Promise<{ bytes: Buffer; con
       contentType: blob.blob.contentType || "application/octet-stream",
     };
   }
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   try {
     const bytes = fs.readFileSync(path.join(UPLOAD_DIR, filename));
     const ext = filename.split(".").pop() ?? "";

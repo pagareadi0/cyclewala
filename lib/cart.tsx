@@ -10,11 +10,8 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 
 export type CartItem = {
   slug: string;
-<<<<<<< HEAD
   /** chosen colourway, for cycles sold in several */
   color?: string;
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   brand: string;
   model: string;
   image: string;
@@ -22,23 +19,15 @@ export type CartItem = {
   qty: number;
 };
 
-<<<<<<< HEAD
 /** one cart line per cycle + colour */
 export const cartKey = (i: { slug: string; color?: string }) => `${i.slug}|${i.color ?? ""}`;
 
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
 type CartCtx = {
   items: CartItem[];
   cartCount: number;
   addToCart: (item: Omit<CartItem, "qty">) => void;
-<<<<<<< HEAD
   removeFromCart: (key: string) => void;
   setQty: (key: string, qty: number) => void;
-=======
-  removeFromCart: (slug: string) => void;
-  setQty: (slug: string, qty: number) => void;
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   clearCart: () => void;
   open: boolean;
   setOpen: (v: boolean) => void;
@@ -75,31 +64,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const addToCart: CartCtx["addToCart"] = (item) => {
     setItems((prev) => {
-<<<<<<< HEAD
       const key = cartKey(item);
       const existing = prev.find((p) => cartKey(p) === key);
       if (existing) {
         return prev.map((p) => (cartKey(p) === key ? { ...p, qty: p.qty + 1 } : p));
-=======
-      const existing = prev.find((p) => p.slug === item.slug);
-      if (existing) {
-        return prev.map((p) => (p.slug === item.slug ? { ...p, qty: p.qty + 1 } : p));
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
       }
       return [...prev, { ...item, qty: 1 }];
     });
     setOpen(true);
   };
 
-<<<<<<< HEAD
   const removeFromCart = (key: string) => setItems((prev) => prev.filter((p) => cartKey(p) !== key));
   const setQty = (key: string, qty: number) =>
     setItems((prev) => (qty <= 0 ? prev.filter((p) => cartKey(p) !== key) : prev.map((p) => (cartKey(p) === key ? { ...p, qty } : p))));
-=======
-  const removeFromCart = (slug: string) => setItems((prev) => prev.filter((p) => p.slug !== slug));
-  const setQty = (slug: string, qty: number) =>
-    setItems((prev) => (qty <= 0 ? prev.filter((p) => p.slug !== slug) : prev.map((p) => (p.slug === slug ? { ...p, qty } : p))));
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
   const clearCart = () => setItems([]);
 
   const cartCount = items.reduce((n, i) => n + i.qty, 0);

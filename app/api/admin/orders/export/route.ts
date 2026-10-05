@@ -34,10 +34,7 @@ export async function GET(request: NextRequest) {
     { header: "Customer", key: "name", width: 22 },
     { header: "Brand", key: "brand", width: 14 },
     { header: "Model", key: "model", width: 18 },
-<<<<<<< HEAD
     { header: "Colour", key: "color", width: 18 },
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
     { header: "Qty", key: "qty", width: 6 },
     { header: "Unit price (₹)", key: "price", width: 14 },
     { header: "Line total (₹)", key: "line", width: 14 },
@@ -52,11 +49,7 @@ export async function GET(request: NextRequest) {
       phone: o.customer.phone,
       address: o.customer.address,
       note: o.customer.note ?? "",
-<<<<<<< HEAD
       items: o.items.map((i) => `${i.brand} ${i.model}${i.color ? ` (${i.color})` : ""} x${i.qty}`).join(", "),
-=======
-      items: o.items.map((i) => `${i.brand} ${i.model} x${i.qty}`).join(", "),
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
       total: o.total,
     });
     for (const i of o.items) {
@@ -65,10 +58,7 @@ export async function GET(request: NextRequest) {
         name: o.customer.name,
         brand: i.brand,
         model: i.model,
-<<<<<<< HEAD
         color: i.color ?? "",
-=======
->>>>>>> c55a2b5653cfbe373cdeb904927879b2e2916552
         qty: i.qty,
         price: i.price ?? "",
         line: i.price === null ? "" : i.price * i.qty,
