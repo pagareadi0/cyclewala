@@ -2,10 +2,10 @@
    Set NEXT_PUBLIC_SITE_URL in Vercel once the domain exists —
    everything (sitemap, robots, OG, JSON-LD) follows automatically. */
 
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+export const SITE_URL = configuredSiteUrl || "http://localhost:3000";
 
-if (process.env.NODE_ENV === "production" && !process.env.NEXT_PUBLIC_SITE_URL) {
+if (process.env.NODE_ENV === "production" && !configuredSiteUrl) {
   console.warn(
     "[site] NEXT_PUBLIC_SITE_URL is not set — the sitemap and link previews will point at http://localhost:3000. Set it BEFORE building."
   );
